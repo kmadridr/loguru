@@ -852,6 +852,10 @@ class Logger:
             encoding = "utf8"
             terminator = "\n"
             exception_prefix = ""
+        elif isinstance(sink, list):
+            for s in sink:
+                self.add(s, **kwargs)
+            return
         else:
             raise TypeError("Cannot log to objects of type '%s'" % type(sink).__name__)
 
